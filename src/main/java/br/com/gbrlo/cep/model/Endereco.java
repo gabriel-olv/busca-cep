@@ -99,11 +99,18 @@ public class Endereco {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder(logradouro);
-        sb.append(", número ").append(numero);
-        sb.append(", bairro ").append(bairro);
+
+        if (numero == null || numero.isBlank()) {
+            sb.append(", sem número");
+        } else {
+            sb.append(", número ").append(numero);
+        }
+
         if (complemento != null && !complemento.isBlank()) {
             sb.append(", ").append(complemento);
         }
+
+        sb.append(", bairro ").append(bairro);
         sb.append(", ").append(cidade).append('/').append(estado);
         sb.append(" - CEP ").append(cep);
         return sb.toString();
